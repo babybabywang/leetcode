@@ -1,5 +1,8 @@
 package leetcode;
 
+import java.util.Collections;
+import java.util.concurrent.Semaphore;
+
 /**
  * @author huang
  * @PACKAGE_NAME leetcode
@@ -7,6 +10,10 @@ package leetcode;
  * @date 2019/3/21
  */
 public class One {
+    /**
+     * 非公平锁
+     */
+    static final Semaphore semaphore=new Semaphore(10,false);
     public static int[] twoSum(int[] nums, int target) {
         int[] a = new int[2];
         int len = nums.length;
