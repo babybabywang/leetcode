@@ -86,9 +86,27 @@ public class BubbleSort {
         return a;
     }
 
+    static int[] bufferSort2(int []a,int len){
+        boolean flag=true;
+        int k=len;
+        while (flag){
+            flag=false;
+            for (int i=1;i<k;i++){
+             if (a[i-1]>a[i]){
+                 int temp=a[i-1];
+                 a[i-1]=a[i];
+                 a[i]=temp;
+                 flag=true;
+             }
+            }
+            k--;
+        }
+        return a;
+    }
+
     public static void main(String[] args) {
         int[] a = {4, 6, 1, 3, 8, 5, 9};
-        int[] ints = bufferTest(a);
+        int[] ints = bufferSort2(a,a.length);
         for (int i = 0; i < ints.length; i++) {
             System.out.print(ints[i]);
         }

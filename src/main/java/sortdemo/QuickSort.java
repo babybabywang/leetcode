@@ -1,19 +1,21 @@
-package leetcode;
+package sortdemo;
+
+import java.util.Queue;
 
 /**
- * 快速排序
+ * 手撕算法---快速排序
  *
  * @author huang
- * @date 2019/3/28
+ * @date 2019/3/29
  */
-public class Sort {
+public class QuickSort {
     public static void main(String[] args) {
         int[] a = {12, 20, 5, 16, 15, 1, 30, 45, 23, 9};
         int start = 0;
         int end = a.length - 1;
-        quickSort(a, start, end);
+        quickSort1(a, start, end);
         for (int i = 0; i < a.length; i++) {
-            System.out.println(a[i]);
+            System.out.print(a[i]);
         }
 
     }
@@ -26,7 +28,7 @@ public class Sort {
         while (end > start) {
             //从后往前比较
             while (end > start && a[end] >= key) {
-                //如果没有比关键字小的，比较下一个，知道有比关键值小的交换位置，然后又从前往后比较
+                //如果没有比关键字小的，比较下一个，直到有比关键值小的交换位置，然后又从前往后比较
                 end--;
             }
             if (a[end] <= key) {
@@ -57,4 +59,35 @@ public class Sort {
         }
     }
 
+
+    static int[] quickSort1(int[] a, int low, int high) {
+        int start = low;
+        int end = high;
+        int key = a[low];
+        while (start < end) {
+            while (start < end && key <= a[end]) {
+                end--;
+            }
+            if (a[end] <= key) {
+                int temp = a[end];
+                a[end] = a[start];
+                a[start] = temp;
+            }
+            while (start < end && key >= a[start]) {
+                start++;
+            }
+            if (a[start] >= key) {
+                int temp = a[start];
+                a[start] = a[end];
+                a[end] = temp;
+            }
+        }
+        if (start > low) {
+            quickSort1(a, low, start - 1);
+        }
+        if (end < high) {
+            quickSort1(a, end + 1, high);
+        }
+        return a;
+    }
 }
